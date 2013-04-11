@@ -1,0 +1,426 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		392AAC2117160EA2005BF73F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 392AAC2017160EA2005BF73F /* UIKit.framework */; };
+		392AAC2317160EA2005BF73F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 392AAC2217160EA2005BF73F /* Foundation.framework */; };
+		392AAC2517160EA2005BF73F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 392AAC2417160EA2005BF73F /* CoreGraphics.framework */; };
+		392AAC2B17160EA2005BF73F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 392AAC2917160EA2005BF73F /* InfoPlist.strings */; };
+		392AAC2D17160EA2005BF73F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 392AAC2C17160EA2005BF73F /* main.m */; };
+		392AAC3117160EA2005BF73F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 392AAC3017160EA2005BF73F /* AppDelegate.m */; };
+		392AAC3317160EA2005BF73F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 392AAC3217160EA2005BF73F /* Default.png */; };
+		392AAC3517160EA2005BF73F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 392AAC3417160EA2005BF73F /* Default@2x.png */; };
+		392AAC3717160EA3005BF73F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 392AAC3617160EA2005BF73F /* Default-568h@2x.png */; };
+		392AAC3A17160EA3005BF73F /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 392AAC3817160EA3005BF73F /* MainStoryboard.storyboard */; };
+		392AAC4517160F5D005BF73F /* CreateVenueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 392AAC4417160F5D005BF73F /* CreateVenueViewController.m */; };
+		392AAC4817160F97005BF73F /* CreateVenueModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 392AAC4717160F97005BF73F /* CreateVenueModel.m */; };
+		392AAC4B17160FB7005BF73F /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 392AAC4A17160FB7005BF73F /* LoginViewController.m */; };
+		392AAC5317161092005BF73F /* NetworkJSONRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 392AAC4E17161092005BF73F /* NetworkJSONRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		392AAC5417161092005BF73F /* NetworkStateURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 392AAC5017161092005BF73F /* NetworkStateURLConnection.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		392AAC5517161092005BF73F /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 392AAC5217161092005BF73F /* NSString+URLEncoding.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		392AAC59171611E5005BF73F /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 392AAC57171611E5005BF73F /* FacebookSDKResources.bundle */; };
+		392AAC5A171611E5005BF73F /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 392AAC58171611E5005BF73F /* FacebookSDK.framework */; };
+		392AAC6217161585005BF73F /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 392AAC6117161585005BF73F /* Accounts.framework */; };
+		392AAC641716158C005BF73F /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 392AAC631716158C005BF73F /* Social.framework */; };
+		392AAC6617161599005BF73F /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 392AAC6517161599005BF73F /* AdSupport.framework */; };
+		393E8FA11716349C006650DE /* GenericTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 393E8FA01716349C006650DE /* GenericTableViewController.m */; };
+		393E8FA4171639B7006650DE /* GenericTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 393E8FA3171639B7006650DE /* GenericTableViewCell.m */; };
+		393E8FAC17163DC3006650DE /* GenericCell Background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 393E8FAB17163DC3006650DE /* GenericCell Background@2x.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		392AAC1D17160EA2005BF73F /* VenueSignUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VenueSignUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		392AAC2017160EA2005BF73F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		392AAC2217160EA2005BF73F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		392AAC2417160EA2005BF73F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		392AAC2817160EA2005BF73F /* VenueSignUp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "VenueSignUp-Info.plist"; sourceTree = "<group>"; };
+		392AAC2A17160EA2005BF73F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		392AAC2C17160EA2005BF73F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		392AAC2E17160EA2005BF73F /* VenueSignUp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VenueSignUp-Prefix.pch"; sourceTree = "<group>"; };
+		392AAC2F17160EA2005BF73F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		392AAC3017160EA2005BF73F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		392AAC3217160EA2005BF73F /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		392AAC3417160EA2005BF73F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		392AAC3617160EA2005BF73F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		392AAC3917160EA3005BF73F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		392AAC4317160F5D005BF73F /* CreateVenueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateVenueViewController.h; sourceTree = "<group>"; };
+		392AAC4417160F5D005BF73F /* CreateVenueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateVenueViewController.m; sourceTree = "<group>"; };
+		392AAC4617160F97005BF73F /* CreateVenueModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateVenueModel.h; sourceTree = "<group>"; };
+		392AAC4717160F97005BF73F /* CreateVenueModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateVenueModel.m; sourceTree = "<group>"; };
+		392AAC4917160FB7005BF73F /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		392AAC4A17160FB7005BF73F /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		392AAC4C17161092005BF73F /* BaseURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseURL.h; sourceTree = "<group>"; };
+		392AAC4D17161092005BF73F /* NetworkJSONRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkJSONRequest.h; sourceTree = "<group>"; };
+		392AAC4E17161092005BF73F /* NetworkJSONRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkJSONRequest.m; sourceTree = "<group>"; };
+		392AAC4F17161092005BF73F /* NetworkStateURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkStateURLConnection.h; sourceTree = "<group>"; };
+		392AAC5017161092005BF73F /* NetworkStateURLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkStateURLConnection.m; sourceTree = "<group>"; };
+		392AAC5117161092005BF73F /* NSString+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncoding.h"; sourceTree = "<group>"; };
+		392AAC5217161092005BF73F /* NSString+URLEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URLEncoding.m"; sourceTree = "<group>"; };
+		392AAC57171611E5005BF73F /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FacebookSDKResources.bundle; sourceTree = "<group>"; };
+		392AAC58171611E5005BF73F /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		392AAC6117161585005BF73F /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		392AAC631716158C005BF73F /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		392AAC6517161599005BF73F /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		393E8F9F1716349C006650DE /* GenericTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GenericTableViewController.h; path = ../GenericTableViewController.h; sourceTree = "<group>"; };
+		393E8FA01716349C006650DE /* GenericTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GenericTableViewController.m; path = ../GenericTableViewController.m; sourceTree = "<group>"; };
+		393E8FA2171639B7006650DE /* GenericTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericTableViewCell.h; sourceTree = "<group>"; };
+		393E8FA3171639B7006650DE /* GenericTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericTableViewCell.m; sourceTree = "<group>"; };
+		393E8FAB17163DC3006650DE /* GenericCell Background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GenericCell Background@2x.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		392AAC1A17160EA2005BF73F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				392AAC6617161599005BF73F /* AdSupport.framework in Frameworks */,
+				392AAC641716158C005BF73F /* Social.framework in Frameworks */,
+				392AAC6217161585005BF73F /* Accounts.framework in Frameworks */,
+				392AAC2117160EA2005BF73F /* UIKit.framework in Frameworks */,
+				392AAC2317160EA2005BF73F /* Foundation.framework in Frameworks */,
+				392AAC2517160EA2005BF73F /* CoreGraphics.framework in Frameworks */,
+				392AAC5A171611E5005BF73F /* FacebookSDK.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		392AAC1417160EA2005BF73F = {
+			isa = PBXGroup;
+			children = (
+				392AAC2617160EA2005BF73F /* VenueSignUp */,
+				392AAC1F17160EA2005BF73F /* Frameworks */,
+				392AAC1E17160EA2005BF73F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		392AAC1E17160EA2005BF73F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				392AAC1D17160EA2005BF73F /* VenueSignUp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		392AAC1F17160EA2005BF73F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				392AAC6517161599005BF73F /* AdSupport.framework */,
+				392AAC631716158C005BF73F /* Social.framework */,
+				392AAC6117161585005BF73F /* Accounts.framework */,
+				392AAC57171611E5005BF73F /* FacebookSDKResources.bundle */,
+				392AAC58171611E5005BF73F /* FacebookSDK.framework */,
+				392AAC2017160EA2005BF73F /* UIKit.framework */,
+				392AAC2217160EA2005BF73F /* Foundation.framework */,
+				392AAC2417160EA2005BF73F /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		392AAC2617160EA2005BF73F /* VenueSignUp */ = {
+			isa = PBXGroup;
+			children = (
+				392AAC6817161975005BF73F /* Models */,
+				392AAC6717161966005BF73F /* Views */,
+				392AAC69171619A0005BF73F /* Controllers */,
+				393E8FA717163C71006650DE /* Resources */,
+				392AAC2717160EA2005BF73F /* Supporting Files */,
+			);
+			path = VenueSignUp;
+			sourceTree = "<group>";
+		};
+		392AAC2717160EA2005BF73F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				392AAC2F17160EA2005BF73F /* AppDelegate.h */,
+				392AAC3017160EA2005BF73F /* AppDelegate.m */,
+				392AAC2817160EA2005BF73F /* VenueSignUp-Info.plist */,
+				392AAC2917160EA2005BF73F /* InfoPlist.strings */,
+				392AAC2C17160EA2005BF73F /* main.m */,
+				392AAC2E17160EA2005BF73F /* VenueSignUp-Prefix.pch */,
+				392AAC3217160EA2005BF73F /* Default.png */,
+				392AAC3417160EA2005BF73F /* Default@2x.png */,
+				392AAC3617160EA2005BF73F /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		392AAC56171610A4005BF73F /* NetworkJSONRequest */ = {
+			isa = PBXGroup;
+			children = (
+				392AAC4C17161092005BF73F /* BaseURL.h */,
+				392AAC4D17161092005BF73F /* NetworkJSONRequest.h */,
+				392AAC4E17161092005BF73F /* NetworkJSONRequest.m */,
+				392AAC4F17161092005BF73F /* NetworkStateURLConnection.h */,
+				392AAC5017161092005BF73F /* NetworkStateURLConnection.m */,
+				392AAC5117161092005BF73F /* NSString+URLEncoding.h */,
+				392AAC5217161092005BF73F /* NSString+URLEncoding.m */,
+			);
+			name = NetworkJSONRequest;
+			sourceTree = "<group>";
+		};
+		392AAC6717161966005BF73F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				392AAC3817160EA3005BF73F /* MainStoryboard.storyboard */,
+				393E8FA2171639B7006650DE /* GenericTableViewCell.h */,
+				393E8FA3171639B7006650DE /* GenericTableViewCell.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		392AAC6817161975005BF73F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				392AAC4617160F97005BF73F /* CreateVenueModel.h */,
+				392AAC4717160F97005BF73F /* CreateVenueModel.m */,
+				392AAC56171610A4005BF73F /* NetworkJSONRequest */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		392AAC69171619A0005BF73F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				392AAC4317160F5D005BF73F /* CreateVenueViewController.h */,
+				392AAC4417160F5D005BF73F /* CreateVenueViewController.m */,
+				393E8F9F1716349C006650DE /* GenericTableViewController.h */,
+				393E8FA01716349C006650DE /* GenericTableViewController.m */,
+				392AAC4917160FB7005BF73F /* LoginViewController.h */,
+				392AAC4A17160FB7005BF73F /* LoginViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		393E8FA717163C71006650DE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				393E8FAB17163DC3006650DE /* GenericCell Background@2x.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		392AAC1C17160EA2005BF73F /* VenueSignUp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 392AAC4017160EA3005BF73F /* Build configuration list for PBXNativeTarget "VenueSignUp" */;
+			buildPhases = (
+				392AAC1917160EA2005BF73F /* Sources */,
+				392AAC1A17160EA2005BF73F /* Frameworks */,
+				392AAC1B17160EA2005BF73F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VenueSignUp;
+			productName = VenueSignUp;
+			productReference = 392AAC1D17160EA2005BF73F /* VenueSignUp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		392AAC1517160EA2005BF73F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = SceneCheck;
+			};
+			buildConfigurationList = 392AAC1817160EA2005BF73F /* Build configuration list for PBXProject "VenueSignUp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 392AAC1417160EA2005BF73F;
+			productRefGroup = 392AAC1E17160EA2005BF73F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				392AAC1C17160EA2005BF73F /* VenueSignUp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		392AAC1B17160EA2005BF73F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				392AAC2B17160EA2005BF73F /* InfoPlist.strings in Resources */,
+				392AAC3317160EA2005BF73F /* Default.png in Resources */,
+				392AAC3517160EA2005BF73F /* Default@2x.png in Resources */,
+				392AAC3717160EA3005BF73F /* Default-568h@2x.png in Resources */,
+				392AAC3A17160EA3005BF73F /* MainStoryboard.storyboard in Resources */,
+				392AAC59171611E5005BF73F /* FacebookSDKResources.bundle in Resources */,
+				393E8FAC17163DC3006650DE /* GenericCell Background@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		392AAC1917160EA2005BF73F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				392AAC2D17160EA2005BF73F /* main.m in Sources */,
+				392AAC3117160EA2005BF73F /* AppDelegate.m in Sources */,
+				392AAC4517160F5D005BF73F /* CreateVenueViewController.m in Sources */,
+				392AAC4817160F97005BF73F /* CreateVenueModel.m in Sources */,
+				392AAC4B17160FB7005BF73F /* LoginViewController.m in Sources */,
+				392AAC5317161092005BF73F /* NetworkJSONRequest.m in Sources */,
+				392AAC5417161092005BF73F /* NetworkStateURLConnection.m in Sources */,
+				392AAC5517161092005BF73F /* NSString+URLEncoding.m in Sources */,
+				393E8FA11716349C006650DE /* GenericTableViewController.m in Sources */,
+				393E8FA4171639B7006650DE /* GenericTableViewCell.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		392AAC2917160EA2005BF73F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				392AAC2A17160EA2005BF73F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		392AAC3817160EA3005BF73F /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				392AAC3917160EA3005BF73F /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		392AAC3E17160EA3005BF73F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		392AAC3F17160EA3005BF73F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		392AAC4117160EA3005BF73F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "VenueSignUp/VenueSignUp-Prefix.pch";
+				INFOPLIST_FILE = "VenueSignUp/VenueSignUp-Info.plist";
+				OTHER_LDFLAGS = "-lsqlite3.0";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		392AAC4217160EA3005BF73F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "VenueSignUp/VenueSignUp-Prefix.pch";
+				INFOPLIST_FILE = "VenueSignUp/VenueSignUp-Info.plist";
+				OTHER_LDFLAGS = "-lsqlite3.0";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		392AAC1817160EA2005BF73F /* Build configuration list for PBXProject "VenueSignUp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				392AAC3E17160EA3005BF73F /* Debug */,
+				392AAC3F17160EA3005BF73F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		392AAC4017160EA3005BF73F /* Build configuration list for PBXNativeTarget "VenueSignUp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				392AAC4117160EA3005BF73F /* Debug */,
+				392AAC4217160EA3005BF73F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 392AAC1517160EA2005BF73F /* Project object */;
+}
