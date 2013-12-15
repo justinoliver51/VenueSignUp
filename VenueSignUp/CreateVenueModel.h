@@ -10,4 +10,8 @@
 
 @interface CreateVenueModel : NSObject
 
+@property (strong, nonatomic) NSMutableDictionary *facebookPages;
+
+- (NSArray *)initializeFacebookPages:(NSDictionary *)resultJson;
+
 @end

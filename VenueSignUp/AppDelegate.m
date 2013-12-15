@@ -11,8 +11,6 @@
 
 @implementation AppDelegate
 
-@synthesize request = _request;
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
@@ -145,7 +143,7 @@ NSString *const FBSessionStateChangedNotification =
 
 - (NSString *) getFacebookAccessToken
 {
-    return [[FBSession activeSession] accessToken];;
+    return [[[FBSession activeSession] accessTokenData] accessToken];;
 }
 
 -(void)fbDidExtendToken:(NSString *)accessToken expiresAt:(NSDate *)expiresAt {
@@ -156,33 +154,7 @@ NSString *const FBSessionStateChangedNotification =
     [defaults synchronize];
 }
 
-- (void)dealloc
-{
-	if (_request) {
-		[_request setDelegate:nil];
-		_request = nil;
-	}
-}
-
 #pragma NetworkActivity
-- (void)requestDidFailWithError:(NSError *)error
-{
-    NSLog(@"%@", error);
-}
-
-- (void)requestDidReceiveResponse:(NSURLResponse *)response
-{
-    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    
-    // If our session has timed out
-    if(([httpResponse statusCode] == 403) || ([httpResponse statusCode] == 404))
-    {
-        NSLog(@"%ld", (long)[httpResponse statusCode]);
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"sessionExpired" object:self];
-    }
-}
-
 - (void)requestDidFinishLoadingWithDictionary:(NSDictionary *)result
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
@@ -190,18 +162,49 @@ NSString *const FBSessionStateChangedNotification =
     // If we successfully tested the connection
     if([[[result objectForKey:@"TestConnection_Info"] objectForKey:@"status"] boolValue] == YES)
     {
-        // Pass the statistic information and get the new advertisement
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"adInfo" object:self];
+        
     }
 }
 
-- (void)testConnection
+# pragma BreakoutLeague
+- (void)makeRequestWithPath:(NSString *)path variables:(NSString *)variables andSecure:(BOOL)secure
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
+    NSString *theBaseURL;
+    if(secure == YES)
+        theBaseURL = @baseURLSecure;
+    else
+        theBaseURL = @baseURL;
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@%@", theBaseURL, path, variables];
+    
+    BreakoutLeagueURLConnection *urlConnection = [[BreakoutLeagueURLConnection alloc] init];
+    urlConnection.delegate = self;
+    [urlConnection performRequestWithParameters:nil url:url];
+    
+    NSLog(@"%@", url);
+}
+
+- (void)BreakoutLeagueURLConnectionDidFinishLoading:(BreakoutLeagueURLConnection *)URLConnection withDictionary:(NSDictionary *)dictionary
+{
+    NSLog(@"%@", dictionary);
+    [self requestDidFinishLoadingWithDictionary:dictionary];
+}
+
+- (void)BreakoutLeagueURLConnectionDidFail:(BreakoutLeagueURLConnection *)URLConnection withError:(NSError *)error withURL:(NSString *)URL andErrorMessage:(NSString *)errorMessage
+{
+    NSLog(@"%@", error);
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"sessionExpired" object:self];
+}
+
+#pragma Client API
+- (void)testConnection
+{
     NSString *requestVariables = @"";
-    NSLog(@"testConnection: %@", requestVariables);
-    _request = [NetworkJSONRequest makeRequestWithPath:@"TestConnection" variables:requestVariables delegate:self andSecure:TRUE];
+    [self makeRequestWithPath:@"TestConnection" variables:requestVariables andSecure:YES];
 }
 
 @end

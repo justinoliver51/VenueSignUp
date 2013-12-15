@@ -8,20 +8,32 @@
 
 #import "LoginViewController.h"
 #import "AppDelegate.h"
-#import "CreateVenueViewController.h"
+#import "GetVenueInfoViewController.h"
+#import "AddAdminViewController.h"
+#import <Accounts/Accounts.h>
+#import "DebugViewController.h"
+#import "BaseURL.h"
+
+#define FB_ACCESS_TOKEN @"CAADQgbCANWcBAB0wbPMo86WvMMSdZCZBIn8X8tBMT8xm1gqmXxIuTHwO4odTB3rZBj1zO4Q48mMZANRAp6Lw0WL288UkNmc0fJXS12kzFcW5PbQYbLSkstRHw5EoHEtpxhUWZBt6mZBzb8GZCEZCKiv3maRgLTMvlVyK5uZCJakKg9AZDZD"
 
 @interface LoginViewController ()
 {
     UIImageView *LoginImageView;
     unsigned int networkActivity;
+    NSString *debugBaseURL;
     BOOL loginNotification;
+    BOOL signUp;
+    BOOL addAdmin;
+    BOOL adHoc;
+    BOOL debugFlag;
 }
 
 @end
 
 @implementation LoginViewController
 
-@synthesize request = _request;
+@synthesize scrollView = _scrollView;
+@synthesize loginButton = _loginButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,6 +48,11 @@
 {
     [super viewDidLoad];
     self.navigationController.navigationBarHidden = YES;
+    signUp = NO;
+    addAdmin = NO;
+    adHoc = NO;
+    debugFlag = NO;
+    debugBaseURL = nil;
     
     // Register to listen for sessionExpired
     [[NSNotificationCenter defaultCenter]
@@ -44,8 +61,49 @@
      name:@"login"
      object:nil ];
     
+    // Register to listen for updateLocation
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(logout:)
+     name:@"logout"
+     object:nil ];
+    
+    // Register to listen for debug
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(debugOn:)
+     name:@"debugOn"
+     object:nil];
+    
+    // Register to listen for debug
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(debugOff:)
+     name:@"debugOff"
+     object:nil];
+    
     networkActivity = 0;
     loginNotification = false;
+    
+    // Scroll View
+    [_scrollView setScrollEnabled:YES];
+    [_scrollView setContentSize:(CGSizeMake(1536, 2008))];
+    _scrollView.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"iPad App Page 1@2x.png"]];
+    
+    // UIButton
+    /*CGRect frame = _loginButton.frame;
+    frame.origin.x = 226;
+    frame.origin.y = 808;
+    _loginButton.frame = frame;*/
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    // UIButton
+    CGRect frame = _loginButton.frame;
+    frame.origin.x = 226;
+    frame.origin.y = 808;
+    _loginButton.frame = frame;
 }
 
 - (void)didReceiveMemoryWarning
@@ -59,14 +117,37 @@
     return UIInterfaceOrientationMaskPortrait;
 }
 
+#pragma IB Functions
+- (IBAction)didClickDebugButton:(id)sender
+{
+    UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    DebugViewController *debugViewController = [sb instantiateViewControllerWithIdentifier:@"DebugViewController"];
+    [self presentViewController: debugViewController animated:YES completion:nil];
+}
+
 - (IBAction)didClickLoginButton:(id)sender
 {
+    signUp = YES;
     [self login];
 }
 
-
--(void)login
+- (IBAction)didClickAddAdminButton:(id)sender
 {
+    addAdmin = YES;
+    [self login];
+}
+
+- (IBAction)didClickAdHocButton:(id)sender
+{
+    adHoc = YES;
+    [self login];
+}
+
+#pragma Other Functions
+- (void)login
+{
+    NSArray *permissions = [NSArray arrayWithObjects: @"read_stream", nil];
+    
     // If we are currently logging in, return
     if(networkActivity)
         return;
@@ -78,16 +159,72 @@
     
     else
     {
-        [FBSession openActiveSessionWithReadPermissions:nil
+        [FBSession.activeSession closeAndClearTokenInformation];
+        
+        [FBSession openActiveSessionWithReadPermissions:permissions
                                            allowLoginUI:YES
-                                      completionHandler: ^(FBSession *session, FBSessionState state, NSError *error){
-                                          [self sessionStateChanged:session state:state error:error];
+                                      completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
+                                          if(error)
+                                          {
+                                              if(error.fberrorShouldNotifyUser)
+                                              {
+                                                  NSLog(@"Session error; notify user.  %@", error.fberrorUserMessage);
+                                              }
+                                              else if(error.fberrorCategory == FBErrorCategoryUserCancelled)
+                                              {
+                                                  NSLog(@"Session error; user canceled.");
+                                              }
+                                              else
+                                              {
+                                                  NSLog(@"Session unknown error");
+                                              }
+                                              
+                                              
+                                              [self fbResync];
+                                              [self performSelector:@selector(fbAttemptConnection) withObject:nil afterDelay:0.5];
+                                          }
+                                          else
+                                              [self sessionStateChanged:session state:state error:error];
                                       }];
     }
-    
 }
 
--(void)login:(NSNotification *) notification
+- (void)logout: (NSNotification *) notification
+{
+    [self.navigationController popToViewController:self animated:YES];
+}
+
+- (void)debugOn: (NSNotification *) notification
+{
+    debugFlag = TRUE;
+    
+    // If we did not receive what we expected, return
+    if([[notification object] isKindOfClass:[NSString class]] == FALSE)
+        return;
+    
+    // Get the venueID and favorites list
+    debugBaseURL = (NSString *) [notification object];
+
+}
+
+- (void)debugOff: (NSNotification *) notification
+{
+    debugFlag = FALSE;
+    debugBaseURL = nil;
+}
+
+- (void)fbAttemptConnection
+{
+    NSArray *permissions = nil;
+    
+    [FBSession openActiveSessionWithReadPermissions:permissions
+                                       allowLoginUI:YES
+                                  completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
+                                      [self sessionStateChanged:session state:state error:error];
+                                  }];
+}
+
+- (void)login:(NSNotification *) notification
 {
     loginNotification = true;
     [self login];
@@ -95,28 +232,6 @@
 }
 
 #pragma Network Connection
-- (void)requestDidFailWithError:(NSError *)error
-{
-	NSLog(@"%@", error);
-    
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    networkActivity = 0;
-}
-
-- (void)requestDidReceiveResponse:(NSURLResponse *)response
-{
-    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
-    
-    // If our session has timed out
-    if(([httpResponse statusCode] == 403) || ([httpResponse statusCode] == 404))
-    {
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        networkActivity = 0;
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"logout" object:self];
-    }
-}
-
 - (void)requestDidFinishLoadingWithDictionary:(NSDictionary *)result
 {
     networkActivity--;
@@ -140,13 +255,48 @@
             return;
         }
         
-        // Open next view controller
-        UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-        CreateVenueViewController *createVenueViewController = [sb instantiateViewControllerWithIdentifier:@"CreateVenueViewController"];
-        [self.navigationController pushViewController:createVenueViewController animated:YES];
+        if(loginNotification == YES)
+            return;
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        
+        if(addAdmin == YES)
+        {
+            addAdmin = NO;
+            [defaults setObject:@"addAdmin" forKey:@"signUpButton"];
+            
+            // Open next view controller
+            UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+            AddAdminViewController *addAdminViewController = [sb instantiateViewControllerWithIdentifier:@"AddAdminViewController"];
+            [self.navigationController pushViewController:addAdminViewController animated:YES];
+        }
+        else if(signUp == YES)
+        {
+            signUp = NO;
+            [defaults setObject:@"signUp" forKey:@"signUpButton"];
+            
+            // Open next view controller
+            UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+            GetVenueInfoViewController *getVenueInfoViewController = [sb instantiateViewControllerWithIdentifier:@"GetVenueInfoViewController"];
+            [self.navigationController pushViewController:getVenueInfoViewController animated:YES];
+        }
+        else if(adHoc == YES)
+        {
+            adHoc = NO;
+            [defaults setObject:@"adHoc" forKey:@"signUpButton"];
+            
+            // Open next view controller
+            UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+            GetVenueInfoViewController *getVenueInfoViewController = [sb instantiateViewControllerWithIdentifier:@"GetVenueInfoViewController"];
+            [self.navigationController pushViewController:getVenueInfoViewController animated:YES];
+        }
+        
+        // Save the information
+        [defaults synchronize];
     }
 }
 
+#pragma Client Code
 - (void) loginToServer
 {
     AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
@@ -160,13 +310,9 @@
     
     NSLog(@"login: userName = %@, password = %@, accessToken = %@", @"", @"", accessToken);
     
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    networkActivity++;
-    
     // Make the Login call to the server
     NSString *requestVariables = [NSString stringWithFormat:@"&arg=%@&arg=%@&arg=%@", @"", @"", accessToken];
-    NSLog(@"login: %@", requestVariables);
-    _request = [NetworkJSONRequest makeRequestWithPath:@"Login" variables:requestVariables delegate:self andSecure:TRUE];
+    [self makeRequestWithPath:@"Login" variables:requestVariables andSecure:YES];
 }
 
 - (void)sessionStateChanged:(FBSession *)session
@@ -209,7 +355,7 @@
     }
     
     if (error) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
+         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
                                                             message:error.localizedDescription
                                                            delegate:nil
                                                   cancelButtonTitle:@"OK"
@@ -218,12 +364,61 @@
     }
 }
 
-- (void)dealloc
+- (void)fbResync
 {
-	if (_request) {
-		[_request setDelegate:nil];
-		_request = nil;
-	}
+    ACAccountStore *accountStore;
+    ACAccountType *accountTypeFB;
+    if ((accountStore = [[ACAccountStore alloc] init]) && (accountTypeFB = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook] ) )
+    {
+        
+        NSArray *fbAccounts = [accountStore accountsWithAccountType:accountTypeFB];
+        id account;
+        if (fbAccounts && [fbAccounts count] > 0 && (account = [fbAccounts objectAtIndex:0]))
+        {
+            [accountStore renewCredentialsForAccount:account completion:^(ACAccountCredentialRenewResult renewResult, NSError *error) {
+                //we don't actually need to inspect renewResult or error.
+                if (error){
+                    NSLog(@"%@", error.localizedDescription);
+                }
+            }];
+        }
+    }
+}
+
+# pragma BreakoutLeague
+- (void)makeRequestWithPath:(NSString *)path variables:(NSString *)variables andSecure:(BOOL)secure
+{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    networkActivity++;
+    
+    NSString *theBaseURL;
+    if(secure == YES)
+        theBaseURL = @baseURLSecure;
+    else
+        theBaseURL = @baseURL;
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@%@", theBaseURL, path, variables];
+    
+    BreakoutLeagueURLConnection *urlConnection = [[BreakoutLeagueURLConnection alloc] init];
+    urlConnection.delegate = self;
+    [urlConnection performRequestWithParameters:nil url:url];
+    
+    NSLog(@"%@", url);
+}
+
+- (void)BreakoutLeagueURLConnectionDidFinishLoading:(BreakoutLeagueURLConnection *)URLConnection withDictionary:(NSDictionary *)dictionary
+{
+    NSLog(@"%@", dictionary);
+    [self requestDidFinishLoadingWithDictionary:dictionary];
+}
+
+- (void)BreakoutLeagueURLConnectionDidFail:(BreakoutLeagueURLConnection *)URLConnection withError:(NSError *)error withURL:(NSString *)URL andErrorMessage:(NSString *)errorMessage
+{
+    NSLog(@"%@", error);
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    networkActivity = 0;
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"sessionExpired" object:self];
 }
 
 @end

@@ -41,5 +41,7 @@
 
 - (id)initWithPath:(NSString *)path variables:(NSString *)variables delegate:(id)delegate andSecure:(BOOL)isSecure;
 + (NetworkJSONRequest *)makeRequestWithPath:(NSString *)path variables:(NSString *)variables delegate:(id)delegate andSecure:(BOOL)isSecure;
+// SceneCheck added this function
++ (void)setDebugURL:(NSString *)debugURL;
 
 @end

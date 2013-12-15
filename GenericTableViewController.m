@@ -19,12 +19,13 @@
     BOOL didSelectVenue;
     
     GenericTableViewCell *selectedCell;
-    NSString *selectedCellName;
     int flashCount;
 }
 
 @synthesize model = _model;
+@synthesize selectedCellName = _selectedCellName;
 //@synthesize venuesGlowBackgroundImageView = _venuesGlowBackgroundImageView;
+@synthesize notifyParentViewController = _notifyParentViewController;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -99,13 +100,14 @@
     // Set the venue's name
     cell.nameLabel.text = [_model objectAtIndex:indexPath.row];
     
-    if((indexPath.row  == 0) && (!selectedCellName))
+    /*
+    if((indexPath.row  == 0) && (!_selectedCellName))
     {
         cell.nameLabel.textColor = [UIColor colorWithRed:0.0f/255.0f green:186.0f/255.0f blue:255.0f/255.0f alpha:1.0f];
         selectedCell = cell;
-        selectedCellName = cell.nameLabel.text;
+        _selectedCellName = cell.nameLabel.text;
     }
-    else if([selectedCellName isEqualToString:cell.nameLabel.text])
+    else*/ if([_selectedCellName isEqualToString:cell.nameLabel.text])
     {
         cell.nameLabel.textColor = [UIColor colorWithRed:0.0f/255.0f green:186.0f/255.0f blue:255.0f/255.0f alpha:1.0f];
         selectedCell = cell;
@@ -126,14 +128,20 @@
     GenericTableViewCell *cell = (GenericTableViewCell *) [self.tableView cellForRowAtIndexPath:indexPath];
     cell.nameLabel.textColor = [UIColor colorWithRed:0.0f/255.0f green:186.0f/255.0f blue:255.0f/255.0f alpha:1.0f];
     
-    if([selectedCellName isEqualToString:cell.nameLabel.text] == NO)
+    if([_selectedCellName isEqualToString:cell.nameLabel.text] == NO)
     {
         selectedCell.nameLabel.textColor = [UIColor grayColor];
         selectedCell = cell;
-        selectedCellName = cell.nameLabel.text;
+        _selectedCellName = cell.nameLabel.text;
     }
     
     didSelectVenue = YES;
+    
+    if(_notifyParentViewController == YES)
+    {
+        NSDictionary *itemDetails = [[NSDictionary alloc] initWithObjectsAndKeys:_selectedCellName, @"SceneName", nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"rowSelected" object:itemDetails];
+    }
 }
 
 @end

@@ -1,27 +1,28 @@
 //
-//  CreateVenueViewController.m
+//  CreateVirtualVenueViewController.m
 //  VenueSignUp
 //
-//  Created by Justin Oliver on 4/10/13.
+//  Created by Justin Oliver on 7/14/13.
 //  Copyright (c) 2013 SceneCheck. All rights reserved.
 //
 
-#import "CreateVenueViewController.h"
+#import "CreateVirtualVenueViewController.h"
 #import "AppDelegate.h"
 #import "NSString+URLEncoding.h"
 #import "FacebookPageModel.h"
 #import "DebugViewController.h"
 
-@interface CreateVenueViewController ()
+@interface CreateVirtualVenueViewController ()
 
 @end
 
-@implementation CreateVenueViewController
+@implementation CreateVirtualVenueViewController
 {
     UIActivityIndicatorView *facebookPagesSpinner;
     UIActivityIndicatorView *scenesSpinner;
     
     unsigned int networkActivity;
+    CGPoint originalCenter;
 }
 
 @synthesize navigationBar = _navigationBar;
@@ -30,6 +31,7 @@
 @synthesize musicTypesTableView = _musicTypesTableView;
 @synthesize facebookPagesTableView = _facebookPagesTableView;
 @synthesize streetAddressString = _streetAddressString;
+@synthesize twitterUsernameTextField = _twitterUsernameTextField;
 @synthesize cityString = _cityString;
 @synthesize stateString = _stateString;
 @synthesize venueNameString = _venueNameString;
@@ -66,13 +68,13 @@
     scenesTVC.tableView = _scenesTableView;
     [_scenesTableView setDelegate:scenesTVC];
     [_scenesTableView setDataSource:scenesTVC];
-
+    
     sceneTypesTVC = [[GenericTableViewController alloc] init];
     sceneTypesTVC.tableView = _sceneTypesTableView;
     [_sceneTypesTableView setDelegate:sceneTypesTVC];
     [_sceneTypesTableView setDataSource:sceneTypesTVC];
     sceneTypesTVC.model = [[NSArray alloc] initWithObjects:
-                           @"Alternative", @"Cocktail Bar", @"Country Western", @"Dive Bar", @"DJ's", @"Electronic",
+                           @"Alternative", @"College", @"Cocktail Bar", @"Country Western", @"Dive Bar", @"DJ's", @"Electronic",
                            @"Folk", @"Games", @"Greek", @"Hip-Hop", @"Indie", @"Jazz", @"Latino", @"LGBT",
                            @"Dance Club", @"Live Music", @"Lounge", @"Metal", @"Punk", @"Rock", @"Shot Bar",
                            @"Top-40s", nil];
@@ -95,17 +97,17 @@
     self.parentViewController.navigationController.navigationBarHidden = YES;
     self.navigationItem.hidesBackButton = YES;
     /*
-    if ([_navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] )
-    {
-        UIImage *image = [UIImage imageNamed:@"SceneCheck Nav Bar.png"];
-        [_navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
-    }
-    
-    // Add a tap gesture
-    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didClickNavigationBar)];
-    tapGestureRecognizer.numberOfTapsRequired = 1;
-    [_navigationBar addGestureRecognizer:tapGestureRecognizer];
-    _navigationBar.userInteractionEnabled = YES;
+     if ([_navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] )
+     {
+     UIImage *image = [UIImage imageNamed:@"SceneCheck Nav Bar.png"];
+     [_navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
+     }
+     
+     // Add a tap gesture
+     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didClickNavigationBar)];
+     tapGestureRecognizer.numberOfTapsRequired = 1;
+     [_navigationBar addGestureRecognizer:tapGestureRecognizer];
+     _navigationBar.userInteractionEnabled = YES;
      */
     
     // NAVIGATION BAR ITEMS
@@ -135,7 +137,7 @@
     [[FBSession activeSession] requestNewPublishPermissions:permissions
                                             defaultAudience:FBSessionDefaultAudienceFriends
                                           completionHandler:^(FBSession *session, NSError *error) {
-                                              [self getFacebookPages];
+                                              [self getVirtualVenueFacebookPages];
                                           }];
 }
 
@@ -145,33 +147,22 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-
 #pragma IBOutlets
-- (IBAction)didClickDebugButton:(id)sender
-{
-    UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-    DebugViewController *debugViewController = [sb instantiateViewControllerWithIdentifier:@"DebugViewController"];
-    [self presentViewController: debugViewController animated:YES completion:nil];
-}
-
 - (IBAction)didClickGetFacebookPages:(id)sender
 {
     NSArray *permissions = [NSArray arrayWithObjects: @"publish_checkins", @"manage_pages", @"publish_stream", nil];
     
     [[FBSession activeSession] requestNewPublishPermissions:permissions
-                                                 defaultAudience:FBSessionDefaultAudienceFriends
-                                               completionHandler:^(FBSession *session, NSError *error) {
-                                                   [self getFacebookPages];
-                                               }];
+                                            defaultAudience:FBSessionDefaultAudienceFriends
+                                          completionHandler:^(FBSession *session, NSError *error) {
+                                              [self getVirtualVenueFacebookPages];
+                                          }];
 }
-
 
 - (IBAction)didClickLogoutButton:(id)sender
 {
     [self logout];
 }
-
 
 - (IBAction)didClickCreateVenue:(id)sender
 {
@@ -190,7 +181,81 @@
     [self logout];
 }
 
-#pragma Client API
+- (IBAction)didClickDebugButton:(id)sender
+{
+    UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    DebugViewController *debugViewController = [sb instantiateViewControllerWithIdentifier:@"DebugViewController"];
+    [self presentViewController: debugViewController animated:YES completion:nil];
+}
+
+#pragma UITextField Functions
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    NSLog(@"touchesBegan:withEvent:");
+    [self.view endEditing:YES];
+    [super touchesBegan:touches withEvent:event];
+    
+    if(originalCenter.y == 0)
+        originalCenter = self.view.center;
+    
+    if(self.view.center.y != originalCenter.y)
+    {
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.25];
+        self.view.center = CGPointMake(originalCenter.x, originalCenter.y);// - TEXT_FIELD_ADJUSTMENT);
+        [UIView commitAnimations];
+    }
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    NSLog(@"textFieldShouldBeginEditing");
+    textField.backgroundColor = [UIColor colorWithRed:220.0f/255.0f green:220.0f/255.0f blue:220.0f/255.0f alpha:1.0f];
+    
+    if(originalCenter.y == 0)
+        originalCenter = self.view.center;
+    
+    if(self.view.center.y == originalCenter.y)
+    {
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.25];
+        self.view.center = CGPointMake(originalCenter.x, originalCenter.y - TEXT_FIELD_ADJUSTMENT);
+        [UIView commitAnimations];
+    }
+    
+    return YES;
+}
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    NSLog(@"textFieldDidBeginEditing");
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+    NSLog(@"textFieldShouldEndEditing");
+    textField.backgroundColor = [UIColor whiteColor];
+    return YES;
+}
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    NSLog(@"textFieldDidEndEditing");
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSLog(@"textField:shouldChangeCharactersInRange: %lu replacementString: %@", (unsigned long)range.length, string);
+    return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    NSLog(@"textFieldShouldReturn:");
+    [textField resignFirstResponder];
+    return YES;
+}
+
+
+#pragma Server API
 - (void)createVenue
 {
     // Get the information for the new venue
@@ -203,7 +268,7 @@
     NSString *musicTypes = [musicTypesTVC.selectedCellName encodedURLString];
     NSString *sceneTypes = [sceneTypesTVC.selectedCellName encodedURLString];
     NSString *facebookPageName = [facebookPagesTVC.selectedCellName encodedURLString];
-    NSString *twitterUsername = @"";
+    NSString *twitterUsername = _twitterUsernameTextField.text;
     
     // Get the Facebook ID
     FacebookPageModel *page = [model.facebookPages objectForKey:facebookPagesTVC.selectedCellName];
@@ -228,11 +293,11 @@
     [self makeRequestWithPath:@"GetSceneTypesAndMusicTypes" variables:requestVariables andSecure:YES];
 }
 
-- (void)getFacebookPages
+- (void)getVirtualVenueFacebookPages
 {
     // Make the Login call to the server
     NSString *requestVariables = [NSString stringWithFormat:@""];
-    [self makeRequestWithPath:@"GetFacebookPages" variables:requestVariables andSecure:YES];
+    [self makeRequestWithPath:@"GetVirtualVenuesFacebookPages" variables:requestVariables andSecure:YES];
 }
 
 - (void)logout
@@ -371,7 +436,7 @@
         {
             NSLog(@"%@", (NSString *)[[result objectForKey:@"Logout_Info"] objectForKey:@"error"]);
         }
-    
+        
         AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
         
         if(FBSession.activeSession.isOpen)
@@ -446,3 +511,4 @@
 }
 
 @end
+

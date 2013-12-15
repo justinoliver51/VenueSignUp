@@ -11,8 +11,8 @@
 
 @implementation NetworkJSONRequest
 
-
 static NSMutableArray *requests;
+static NSString *debugURL;
 
 + (NetworkJSONRequest *)requestAtIndex:(int)index
 {
@@ -56,13 +56,29 @@ static NSMutableArray *requests;
 		NSString *myURL;
 		if ([path rangeOfString:@"http://"].location == NSNotFound && [path rangeOfString:@"https://"].location == NSNotFound) {
 			if (isSecure) {
-				myURL = [NSString stringWithFormat:@"%s%@", baseURLSecure, path];
+				if(debugURL)
+                {
+                    myURL = [NSString stringWithFormat:@"%@%@", debugURL, path];
+                }
+                else
+                {
+                    myURL = [NSString stringWithFormat:@"%s%@", baseURLSecure, path];
+                }
 			} else {
-				myURL = [NSString stringWithFormat:@"%s%@", baseURL, path];
+                if(debugURL)
+                {
+                    myURL = [NSString stringWithFormat:@"%@%@", debugURL, path];
+                }
+                else
+                {
+                    myURL = [NSString stringWithFormat:@"%s%@", baseURL, path];
+                }
 			}
 		} else {
 			myURL = path;
 		}
+        
+        NSLog(@"The url is: %@", myURL);
 		
 		if (variables) {
 			myURL = [NSString stringWithFormat:@"%@%@", myURL, variables];
@@ -111,6 +127,7 @@ static NSMutableArray *requests;
 		[self.delegate setRequest:nil];
 		
 		NSError *jsonParsingError = nil;
+        //NSLog(@"%@", responseData);
 		id JSONParsingResult = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&jsonParsingError];
 		
 		if (self.delegate != nil && [JSONParsingResult isKindOfClass:[NSDictionary class]] && [self.delegate respondsToSelector:@selector(requestDidFinishLoadingWithDictionary:)]) {
@@ -143,6 +160,15 @@ static NSMutableArray *requests;
 - (void)requestDidFailWithErrorOnMainThread:(NSError *)error
 {
     [self.delegate requestDidFailWithError:error];
+}
+
+// SceneCheck added this function
++ (void)setDebugURL:(NSString *)newDebugURL
+{
+    if(newDebugURL)
+        debugURL = [[NSString alloc] initWithString:newDebugURL];
+    else
+        debugURL = nil;
 }
 
 

@@ -10,6 +10,8 @@
 
 @interface GenericTableViewController : UITableViewController
 
-@property (strong, nonatomic) NSMutableArray *model;
+@property (strong, nonatomic) NSArray *model;
+@property (strong, nonatomic) NSString *selectedCellName;
+@property (nonatomic, assign) BOOL notifyParentViewController;
 
 @end

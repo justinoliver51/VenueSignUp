@@ -23,14 +23,41 @@
 		392AAC5317161092005BF73F /* NetworkJSONRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 392AAC4E17161092005BF73F /* NetworkJSONRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		392AAC5417161092005BF73F /* NetworkStateURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 392AAC5017161092005BF73F /* NetworkStateURLConnection.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		392AAC5517161092005BF73F /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 392AAC5217161092005BF73F /* NSString+URLEncoding.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		392AAC59171611E5005BF73F /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 392AAC57171611E5005BF73F /* FacebookSDKResources.bundle */; };
-		392AAC5A171611E5005BF73F /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 392AAC58171611E5005BF73F /* FacebookSDK.framework */; };
 		392AAC6217161585005BF73F /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 392AAC6117161585005BF73F /* Accounts.framework */; };
 		392AAC641716158C005BF73F /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 392AAC631716158C005BF73F /* Social.framework */; };
 		392AAC6617161599005BF73F /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 392AAC6517161599005BF73F /* AdSupport.framework */; };
+		3933A1F917B99C070080905F /* New Sign Up Background1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3933A1F717B99C070080905F /* New Sign Up Background1@2x.png */; };
+		3933A1FA17B99C070080905F /* Create_Virtual_Venue_Background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3933A1F817B99C070080905F /* Create_Virtual_Venue_Background@2x.png */; };
+		3936EC18171F5A2A00C50E32 /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3936EC17171F5A2A00C50E32 /* FacebookSDKResources.bundle */; };
+		39390FB1176387BA006E5E4C /* AddAdminViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39390FB0176387BA006E5E4C /* AddAdminViewController.m */; };
+		39390FB41763957B006E5E4C /* ScenesListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 39390FB31763957B006E5E4C /* ScenesListModel.m */; };
+		39390FB7176395EF006E5E4C /* SceneModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 39390FB6176395EF006E5E4C /* SceneModel.m */; };
+		39390FBA17639658006E5E4C /* VenueModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 39390FB917639658006E5E4C /* VenueModel.m */; };
 		393E8FA11716349C006650DE /* GenericTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 393E8FA01716349C006650DE /* GenericTableViewController.m */; };
 		393E8FA4171639B7006650DE /* GenericTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 393E8FA3171639B7006650DE /* GenericTableViewCell.m */; };
 		393E8FAC17163DC3006650DE /* GenericCell Background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 393E8FAB17163DC3006650DE /* GenericCell Background@2x.png */; };
+		395A6E8917935579002F017B /* CreateVirtualVenueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 395A6E8817935579002F017B /* CreateVirtualVenueViewController.m */; };
+		395A6E8E1794B31B002F017B /* AD-HOC Button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 395A6E8B1794B31B002F017B /* AD-HOC Button@2x.png */; };
+		395A6E8F1794B31B002F017B /* CreateVirtualVenueBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 395A6E8C1794B31B002F017B /* CreateVirtualVenueBackground@2x.png */; };
+		395A6E921794B98C002F017B /* DebugViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 395A6E911794B98C002F017B /* DebugViewController.m */; };
+		396EA6A51719004600C4C13A /* FacebookPageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 396EA6A41719004600C4C13A /* FacebookPageModel.m */; };
+		39B8BD17185B8111008F9621 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39B8BD16185B8111008F9621 /* FacebookSDK.framework */; };
+		39B8BD1C185B8255008F9621 /* Add Admin Page@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39B8BD18185B8255008F9621 /* Add Admin Page@2x.png */; };
+		39B8BD1D185B8255008F9621 /* AddAdmin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39B8BD19185B8255008F9621 /* AddAdmin@2x.png */; };
+		39B8BD1E185B8255008F9621 /* Admin Button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39B8BD1A185B8255008F9621 /* Admin Button@2x.png */; };
+		39B8BD1F185B8255008F9621 /* New Sign Up Page@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39B8BD1B185B8255008F9621 /* New Sign Up Page@2x.png */; };
+		39B8BD22185B8877008F9621 /* BreakoutLeagueURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B8BD21185B8877008F9621 /* BreakoutLeagueURLConnection.m */; };
+		39C836E51755737000E29FB8 /* Create Venue Button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39C836DD1755737000E29FB8 /* Create Venue Button@2x.png */; };
+		39C836E61755737000E29FB8 /* Done Button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39C836DE1755737000E29FB8 /* Done Button@2x.png */; };
+		39C836E71755737000E29FB8 /* iPad App Page 1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39C836DF1755737000E29FB8 /* iPad App Page 1@2x.png */; };
+		39C836E81755737000E29FB8 /* iPad App Page 2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39C836E01755737000E29FB8 /* iPad App Page 2@2x.png */; };
+		39C836E91755737000E29FB8 /* iPad App Page 3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39C836E11755737000E29FB8 /* iPad App Page 3@2x.png */; };
+		39C836EA1755737000E29FB8 /* Send Location Button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39C836E21755737000E29FB8 /* Send Location Button@2x.png */; };
+		39C836EB1755737000E29FB8 /* Sent Button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39C836E31755737000E29FB8 /* Sent Button@2x.png */; };
+		39C836EC1755737000E29FB8 /* Sign Up Button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39C836E41755737000E29FB8 /* Sign Up Button@2x.png */; };
+		39C836EF1755773200E29FB8 /* GetVenueInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C836EE1755773200E29FB8 /* GetVenueInfoViewController.m */; };
+		39C836F11756EA0900E29FB8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39C836F01756EA0900E29FB8 /* QuartzCore.framework */; };
+		39FAA13F175ECF07000CBF3F /* iPad App Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 39FAA13E175ECF07000CBF3F /* iPad App Icon@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,16 +88,53 @@
 		392AAC5017161092005BF73F /* NetworkStateURLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkStateURLConnection.m; sourceTree = "<group>"; };
 		392AAC5117161092005BF73F /* NSString+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncoding.h"; sourceTree = "<group>"; };
 		392AAC5217161092005BF73F /* NSString+URLEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URLEncoding.m"; sourceTree = "<group>"; };
-		392AAC57171611E5005BF73F /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FacebookSDKResources.bundle; sourceTree = "<group>"; };
-		392AAC58171611E5005BF73F /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		392AAC6117161585005BF73F /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		392AAC631716158C005BF73F /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		392AAC6517161599005BF73F /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		3933A1F717B99C070080905F /* New Sign Up Background1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "New Sign Up Background1@2x.png"; sourceTree = "<group>"; };
+		3933A1F817B99C070080905F /* Create_Virtual_Venue_Background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Create_Virtual_Venue_Background@2x.png"; sourceTree = "<group>"; };
+		3936EC17171F5A2A00C50E32 /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FacebookSDKResources.bundle; sourceTree = "<group>"; };
+		39390FAF176387BA006E5E4C /* AddAdminViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddAdminViewController.h; sourceTree = "<group>"; };
+		39390FB0176387BA006E5E4C /* AddAdminViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddAdminViewController.m; sourceTree = "<group>"; };
+		39390FB21763957B006E5E4C /* ScenesListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScenesListModel.h; sourceTree = "<group>"; };
+		39390FB31763957B006E5E4C /* ScenesListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScenesListModel.m; sourceTree = "<group>"; };
+		39390FB5176395EF006E5E4C /* SceneModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneModel.h; sourceTree = "<group>"; };
+		39390FB6176395EF006E5E4C /* SceneModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneModel.m; sourceTree = "<group>"; };
+		39390FB817639658006E5E4C /* VenueModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VenueModel.h; sourceTree = "<group>"; };
+		39390FB917639658006E5E4C /* VenueModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueModel.m; sourceTree = "<group>"; };
 		393E8F9F1716349C006650DE /* GenericTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GenericTableViewController.h; path = ../GenericTableViewController.h; sourceTree = "<group>"; };
 		393E8FA01716349C006650DE /* GenericTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GenericTableViewController.m; path = ../GenericTableViewController.m; sourceTree = "<group>"; };
 		393E8FA2171639B7006650DE /* GenericTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericTableViewCell.h; sourceTree = "<group>"; };
 		393E8FA3171639B7006650DE /* GenericTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericTableViewCell.m; sourceTree = "<group>"; };
 		393E8FAB17163DC3006650DE /* GenericCell Background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GenericCell Background@2x.png"; sourceTree = "<group>"; };
+		395A6E8717935579002F017B /* CreateVirtualVenueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateVirtualVenueViewController.h; sourceTree = "<group>"; };
+		395A6E8817935579002F017B /* CreateVirtualVenueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateVirtualVenueViewController.m; sourceTree = "<group>"; };
+		395A6E8B1794B31B002F017B /* AD-HOC Button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AD-HOC Button@2x.png"; sourceTree = "<group>"; };
+		395A6E8C1794B31B002F017B /* CreateVirtualVenueBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CreateVirtualVenueBackground@2x.png"; sourceTree = "<group>"; };
+		395A6E901794B98C002F017B /* DebugViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugViewController.h; sourceTree = "<group>"; };
+		395A6E911794B98C002F017B /* DebugViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugViewController.m; sourceTree = "<group>"; };
+		396EA6A31719004600C4C13A /* FacebookPageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookPageModel.h; sourceTree = "<group>"; };
+		396EA6A41719004600C4C13A /* FacebookPageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookPageModel.m; sourceTree = "<group>"; };
+		39B8BD16185B8111008F9621 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		39B8BD18185B8255008F9621 /* Add Admin Page@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Add Admin Page@2x.png"; sourceTree = "<group>"; };
+		39B8BD19185B8255008F9621 /* AddAdmin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AddAdmin@2x.png"; sourceTree = "<group>"; };
+		39B8BD1A185B8255008F9621 /* Admin Button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Admin Button@2x.png"; sourceTree = "<group>"; };
+		39B8BD1B185B8255008F9621 /* New Sign Up Page@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "New Sign Up Page@2x.png"; sourceTree = "<group>"; };
+		39B8BD20185B8877008F9621 /* BreakoutLeagueURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BreakoutLeagueURLConnection.h; sourceTree = "<group>"; };
+		39B8BD21185B8877008F9621 /* BreakoutLeagueURLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BreakoutLeagueURLConnection.m; sourceTree = "<group>"; };
+		39C836DD1755737000E29FB8 /* Create Venue Button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Create Venue Button@2x.png"; sourceTree = "<group>"; };
+		39C836DE1755737000E29FB8 /* Done Button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Done Button@2x.png"; sourceTree = "<group>"; };
+		39C836DF1755737000E29FB8 /* iPad App Page 1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPad App Page 1@2x.png"; sourceTree = "<group>"; };
+		39C836E01755737000E29FB8 /* iPad App Page 2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPad App Page 2@2x.png"; sourceTree = "<group>"; };
+		39C836E11755737000E29FB8 /* iPad App Page 3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPad App Page 3@2x.png"; sourceTree = "<group>"; };
+		39C836E21755737000E29FB8 /* Send Location Button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Send Location Button@2x.png"; sourceTree = "<group>"; };
+		39C836E31755737000E29FB8 /* Sent Button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sent Button@2x.png"; sourceTree = "<group>"; };
+		39C836E41755737000E29FB8 /* Sign Up Button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sign Up Button@2x.png"; sourceTree = "<group>"; };
+		39C836ED1755773200E29FB8 /* GetVenueInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetVenueInfoViewController.h; sourceTree = "<group>"; };
+		39C836EE1755773200E29FB8 /* GetVenueInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetVenueInfoViewController.m; sourceTree = "<group>"; };
+		39C836F01756EA0900E29FB8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		39EE650C185E5FC500B62607 /* VenueSignUpConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VenueSignUpConstants.h; sourceTree = "<group>"; };
+		39FAA13E175ECF07000CBF3F /* iPad App Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iPad App Icon@2x.png"; path = "../iPad App Icon@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,13 +142,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39B8BD17185B8111008F9621 /* FacebookSDK.framework in Frameworks */,
+				39C836F11756EA0900E29FB8 /* QuartzCore.framework in Frameworks */,
 				392AAC6617161599005BF73F /* AdSupport.framework in Frameworks */,
 				392AAC641716158C005BF73F /* Social.framework in Frameworks */,
 				392AAC6217161585005BF73F /* Accounts.framework in Frameworks */,
 				392AAC2117160EA2005BF73F /* UIKit.framework in Frameworks */,
 				392AAC2317160EA2005BF73F /* Foundation.framework in Frameworks */,
 				392AAC2517160EA2005BF73F /* CoreGraphics.framework in Frameworks */,
-				392AAC5A171611E5005BF73F /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,14 +176,15 @@
 		392AAC1F17160EA2005BF73F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				39B8BD16185B8111008F9621 /* FacebookSDK.framework */,
+				3936EC17171F5A2A00C50E32 /* FacebookSDKResources.bundle */,
 				392AAC6517161599005BF73F /* AdSupport.framework */,
 				392AAC631716158C005BF73F /* Social.framework */,
 				392AAC6117161585005BF73F /* Accounts.framework */,
-				392AAC57171611E5005BF73F /* FacebookSDKResources.bundle */,
-				392AAC58171611E5005BF73F /* FacebookSDK.framework */,
 				392AAC2017160EA2005BF73F /* UIKit.framework */,
 				392AAC2217160EA2005BF73F /* Foundation.framework */,
 				392AAC2417160EA2005BF73F /* CoreGraphics.framework */,
+				39C836F01756EA0900E29FB8 /* QuartzCore.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -147,6 +213,7 @@
 				392AAC3217160EA2005BF73F /* Default.png */,
 				392AAC3417160EA2005BF73F /* Default@2x.png */,
 				392AAC3617160EA2005BF73F /* Default-568h@2x.png */,
+				39FAA13E175ECF07000CBF3F /* iPad App Icon@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -178,8 +245,19 @@
 		392AAC6817161975005BF73F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				39B8BD20185B8877008F9621 /* BreakoutLeagueURLConnection.h */,
+				39B8BD21185B8877008F9621 /* BreakoutLeagueURLConnection.m */,
 				392AAC4617160F97005BF73F /* CreateVenueModel.h */,
 				392AAC4717160F97005BF73F /* CreateVenueModel.m */,
+				396EA6A31719004600C4C13A /* FacebookPageModel.h */,
+				396EA6A41719004600C4C13A /* FacebookPageModel.m */,
+				39390FB21763957B006E5E4C /* ScenesListModel.h */,
+				39390FB31763957B006E5E4C /* ScenesListModel.m */,
+				39390FB5176395EF006E5E4C /* SceneModel.h */,
+				39390FB6176395EF006E5E4C /* SceneModel.m */,
+				39390FB817639658006E5E4C /* VenueModel.h */,
+				39390FB917639658006E5E4C /* VenueModel.m */,
+				39EE650C185E5FC500B62607 /* VenueSignUpConstants.h */,
 				392AAC56171610A4005BF73F /* NetworkJSONRequest */,
 			);
 			name = Models;
@@ -188,10 +266,18 @@
 		392AAC69171619A0005BF73F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				39390FAF176387BA006E5E4C /* AddAdminViewController.h */,
+				39390FB0176387BA006E5E4C /* AddAdminViewController.m */,
 				392AAC4317160F5D005BF73F /* CreateVenueViewController.h */,
 				392AAC4417160F5D005BF73F /* CreateVenueViewController.m */,
+				395A6E8717935579002F017B /* CreateVirtualVenueViewController.h */,
+				395A6E8817935579002F017B /* CreateVirtualVenueViewController.m */,
+				395A6E901794B98C002F017B /* DebugViewController.h */,
+				395A6E911794B98C002F017B /* DebugViewController.m */,
 				393E8F9F1716349C006650DE /* GenericTableViewController.h */,
 				393E8FA01716349C006650DE /* GenericTableViewController.m */,
+				39C836ED1755773200E29FB8 /* GetVenueInfoViewController.h */,
+				39C836EE1755773200E29FB8 /* GetVenueInfoViewController.m */,
 				392AAC4917160FB7005BF73F /* LoginViewController.h */,
 				392AAC4A17160FB7005BF73F /* LoginViewController.m */,
 			);
@@ -201,6 +287,22 @@
 		393E8FA717163C71006650DE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3933A1F717B99C070080905F /* New Sign Up Background1@2x.png */,
+				3933A1F817B99C070080905F /* Create_Virtual_Venue_Background@2x.png */,
+				395A6E8B1794B31B002F017B /* AD-HOC Button@2x.png */,
+				39B8BD18185B8255008F9621 /* Add Admin Page@2x.png */,
+				39B8BD19185B8255008F9621 /* AddAdmin@2x.png */,
+				39B8BD1A185B8255008F9621 /* Admin Button@2x.png */,
+				39B8BD1B185B8255008F9621 /* New Sign Up Page@2x.png */,
+				395A6E8C1794B31B002F017B /* CreateVirtualVenueBackground@2x.png */,
+				39C836DD1755737000E29FB8 /* Create Venue Button@2x.png */,
+				39C836DE1755737000E29FB8 /* Done Button@2x.png */,
+				39C836DF1755737000E29FB8 /* iPad App Page 1@2x.png */,
+				39C836E01755737000E29FB8 /* iPad App Page 2@2x.png */,
+				39C836E11755737000E29FB8 /* iPad App Page 3@2x.png */,
+				39C836E21755737000E29FB8 /* Send Location Button@2x.png */,
+				39C836E31755737000E29FB8 /* Sent Button@2x.png */,
+				39C836E41755737000E29FB8 /* Sign Up Button@2x.png */,
 				393E8FAB17163DC3006650DE /* GenericCell Background@2x.png */,
 			);
 			name = Resources;
@@ -262,8 +364,25 @@
 				392AAC3517160EA2005BF73F /* Default@2x.png in Resources */,
 				392AAC3717160EA3005BF73F /* Default-568h@2x.png in Resources */,
 				392AAC3A17160EA3005BF73F /* MainStoryboard.storyboard in Resources */,
-				392AAC59171611E5005BF73F /* FacebookSDKResources.bundle in Resources */,
 				393E8FAC17163DC3006650DE /* GenericCell Background@2x.png in Resources */,
+				3936EC18171F5A2A00C50E32 /* FacebookSDKResources.bundle in Resources */,
+				39B8BD1C185B8255008F9621 /* Add Admin Page@2x.png in Resources */,
+				39C836E51755737000E29FB8 /* Create Venue Button@2x.png in Resources */,
+				39C836E61755737000E29FB8 /* Done Button@2x.png in Resources */,
+				39C836E71755737000E29FB8 /* iPad App Page 1@2x.png in Resources */,
+				39C836E81755737000E29FB8 /* iPad App Page 2@2x.png in Resources */,
+				39C836E91755737000E29FB8 /* iPad App Page 3@2x.png in Resources */,
+				39C836EA1755737000E29FB8 /* Send Location Button@2x.png in Resources */,
+				39B8BD1D185B8255008F9621 /* AddAdmin@2x.png in Resources */,
+				39C836EB1755737000E29FB8 /* Sent Button@2x.png in Resources */,
+				39C836EC1755737000E29FB8 /* Sign Up Button@2x.png in Resources */,
+				39B8BD1F185B8255008F9621 /* New Sign Up Page@2x.png in Resources */,
+				39FAA13F175ECF07000CBF3F /* iPad App Icon@2x.png in Resources */,
+				395A6E8E1794B31B002F017B /* AD-HOC Button@2x.png in Resources */,
+				39B8BD1E185B8255008F9621 /* Admin Button@2x.png in Resources */,
+				395A6E8F1794B31B002F017B /* CreateVirtualVenueBackground@2x.png in Resources */,
+				3933A1F917B99C070080905F /* New Sign Up Background1@2x.png in Resources */,
+				3933A1FA17B99C070080905F /* Create_Virtual_Venue_Background@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +395,7 @@
 			files = (
 				392AAC2D17160EA2005BF73F /* main.m in Sources */,
 				392AAC3117160EA2005BF73F /* AppDelegate.m in Sources */,
+				39B8BD22185B8877008F9621 /* BreakoutLeagueURLConnection.m in Sources */,
 				392AAC4517160F5D005BF73F /* CreateVenueViewController.m in Sources */,
 				392AAC4817160F97005BF73F /* CreateVenueModel.m in Sources */,
 				392AAC4B17160FB7005BF73F /* LoginViewController.m in Sources */,
@@ -284,6 +404,14 @@
 				392AAC5517161092005BF73F /* NSString+URLEncoding.m in Sources */,
 				393E8FA11716349C006650DE /* GenericTableViewController.m in Sources */,
 				393E8FA4171639B7006650DE /* GenericTableViewCell.m in Sources */,
+				396EA6A51719004600C4C13A /* FacebookPageModel.m in Sources */,
+				39C836EF1755773200E29FB8 /* GetVenueInfoViewController.m in Sources */,
+				39390FB1176387BA006E5E4C /* AddAdminViewController.m in Sources */,
+				39390FB41763957B006E5E4C /* ScenesListModel.m in Sources */,
+				39390FB7176395EF006E5E4C /* SceneModel.m in Sources */,
+				39390FBA17639658006E5E4C /* VenueModel.m in Sources */,
+				395A6E8917935579002F017B /* CreateVirtualVenueViewController.m in Sources */,
+				395A6E921794B98C002F017B /* DebugViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,7 +465,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -362,7 +490,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -372,12 +500,17 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					"\\\"$(SRCROOT)/../FacebookSDK/build\\\"",
+					/Users/justinoliver/Desktop/Developer/iOS/Projects/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "VenueSignUp/VenueSignUp-Prefix.pch";
 				INFOPLIST_FILE = "VenueSignUp/VenueSignUp-Info.plist";
-				OTHER_LDFLAGS = "-lsqlite3.0";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lsqlite3.0",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -388,12 +521,17 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					"\\\"$(SRCROOT)/../FacebookSDK/build\\\"",
+					/Users/justinoliver/Desktop/Developer/iOS/Projects/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "VenueSignUp/VenueSignUp-Prefix.pch";
 				INFOPLIST_FILE = "VenueSignUp/VenueSignUp-Info.plist";
-				OTHER_LDFLAGS = "-lsqlite3.0";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lsqlite3.0",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

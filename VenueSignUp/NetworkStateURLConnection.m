@@ -16,6 +16,15 @@ static NSArray *_cookies;
 
 + (void)resetCookies
 {
+    for(NSHTTPCookie *cookie in _cookies)
+    {
+        for(NSHTTPCookie *storedCookie in [NSHTTPCookieStorage sharedHTTPCookieStorage].cookies)
+        {
+            NSLog(@"%@", (storedCookie == cookie) ? @"TRUE" : @"FALSE");
+        }
+        [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
+    }
+    
 	_cookies = nil;
 }
 
@@ -30,6 +39,7 @@ static NSArray *_cookies;
 		self.delegate = delegate;
 		NSMutableURLRequest *muteRequest = [NSMutableURLRequest requestWithURL:[request URL] cachePolicy:[request cachePolicy] timeoutInterval:[request timeoutInterval]];
 		
+        /*
 		if (_cookies) {
 			NSEnumerator *enumerator = [_cookies objectEnumerator];
 			id cookie;
@@ -38,6 +48,12 @@ static NSArray *_cookies;
 				[muteRequest addValue:[(NSHTTPCookie *)cookie value] forHTTPHeaderField:@"Cookies"];
 			}
 		}
+        */
+        
+        NSHTTPCookieStorage *cookieStore = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+        NSArray *cookiesArray = [cookieStore cookies];
+        NSDictionary *cookieHeaderDict = [NSHTTPCookie requestHeaderFieldsWithCookies:cookiesArray];
+        [muteRequest setAllHTTPHeaderFields:cookieHeaderDict];
 		
 		_connection = [[NSURLConnection alloc] initWithRequest:muteRequest delegate:self startImmediately:TRUE];
 	}

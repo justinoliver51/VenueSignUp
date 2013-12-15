@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "NetworkJSONRequest.h"
+#import "BreakoutLeagueURLConnection.h"
 
-@interface LoginViewController : UIViewController <NetworkJSONRequestDelegate>
+@interface LoginViewController : UIViewController <UIScrollViewDelegate, BreakoutLeagueURLConnectDelegate>
+
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong, nonatomic) IBOutlet UIButton *loginButton;
 
 @end
