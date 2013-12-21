@@ -20,12 +20,10 @@
 {
     UIImageView *LoginImageView;
     unsigned int networkActivity;
-    NSString *debugBaseURL;
     BOOL loginNotification;
     BOOL signUp;
     BOOL addAdmin;
     BOOL adHoc;
-    BOOL debugFlag;
 }
 
 @end
@@ -51,8 +49,10 @@
     signUp = NO;
     addAdmin = NO;
     adHoc = NO;
-    debugFlag = NO;
-    debugBaseURL = nil;
+    
+    AppDelegate *delegate = ((AppDelegate *)[[UIApplication sharedApplication] delegate]);
+    delegate.debugFlag = FALSE;
+    delegate.debugBaseURL = nil;
     
     // Register to listen for sessionExpired
     [[NSNotificationCenter defaultCenter]
@@ -196,21 +196,21 @@
 
 - (void)debugOn: (NSNotification *) notification
 {
-    debugFlag = TRUE;
-    
     // If we did not receive what we expected, return
     if([[notification object] isKindOfClass:[NSString class]] == FALSE)
         return;
     
-    // Get the venueID and favorites list
-    debugBaseURL = (NSString *) [notification object];
+    AppDelegate *delegate = ((AppDelegate *)[[UIApplication sharedApplication] delegate]);
+    delegate.debugFlag = TRUE;
+    delegate.debugBaseURL = (NSString *) [notification object];
 
 }
 
 - (void)debugOff: (NSNotification *) notification
 {
-    debugFlag = FALSE;
-    debugBaseURL = nil;
+    AppDelegate *delegate = ((AppDelegate *)[[UIApplication sharedApplication] delegate]);
+    delegate.debugFlag = FALSE;
+    delegate.debugBaseURL = nil;
 }
 
 - (void)fbAttemptConnection
@@ -392,7 +392,11 @@
     networkActivity++;
     
     NSString *theBaseURL;
-    if(secure == YES)
+    AppDelegate *delegate = ((AppDelegate *)[[UIApplication sharedApplication] delegate]);
+    
+    if(delegate.debugFlag == TRUE)
+        theBaseURL = delegate.debugBaseURL;
+    else if(secure == YES)
         theBaseURL = @baseURLSecure;
     else
         theBaseURL = @baseURL;

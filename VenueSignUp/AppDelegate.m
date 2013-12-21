@@ -11,6 +11,8 @@
 
 @implementation AppDelegate
 
+@synthesize debugFlag = _debugFlag;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
@@ -172,7 +174,11 @@ NSString *const FBSessionStateChangedNotification =
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
     NSString *theBaseURL;
-    if(secure == YES)
+    AppDelegate *delegate = ((AppDelegate *)[[UIApplication sharedApplication] delegate]);
+    
+    if(delegate.debugFlag == TRUE)
+        theBaseURL = delegate.debugBaseURL;
+    else if(secure == YES)
         theBaseURL = @baseURLSecure;
     else
         theBaseURL = @baseURL;

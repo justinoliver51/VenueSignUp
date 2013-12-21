@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "NetworkJSONRequest.h"
 #define baseURLDebug "/SceneCheckServer/RemoteProcedureCall?function="
 
-@interface DebugViewController : UIViewController <NetworkJSONRequestDelegate>
+@interface DebugViewController : UIViewController
 
 @property (strong, nonatomic) IBOutlet UITextField *urlTextField;
 

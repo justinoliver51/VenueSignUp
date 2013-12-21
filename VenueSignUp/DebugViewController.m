@@ -14,7 +14,6 @@
 
 @implementation DebugViewController
 
-@synthesize request = _request;
 @synthesize urlTextField = _urlTextField;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -42,7 +41,6 @@
 {
     // Notification with new URL
     NSString *theBaseURL = [NSString stringWithFormat:@"%@%s", _urlTextField.text, baseURLDebug];
-    [NetworkJSONRequest setDebugURL:theBaseURL];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"debugOn" object:theBaseURL];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -50,15 +48,8 @@
 - (IBAction)didClickQuitButton:(id)sender
 {
     // Notification with empty URL
-    [NetworkJSONRequest setDebugURL:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"debugOff" object:self];
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-#pragma Network Connection
-- (void)requestDidFinishLoadingWithDictionary:(NSDictionary *)result
-{
-    return;
 }
 
 @end

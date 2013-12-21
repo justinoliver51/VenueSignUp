@@ -100,6 +100,13 @@
     // Set the venue's name
     cell.nameLabel.text = [_model objectAtIndex:indexPath.row];
     
+    // Fix for iOS 7 to clear backgroundColor
+    cell.backgroundColor = [UIColor clearColor];
+    cell.backgroundView = [UIView new];
+    cell.backgroundView.backgroundColor = [UIColor clearColor];
+    cell.selectedBackgroundView = [UIView new];
+    cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];
+    
     /*
     if((indexPath.row  == 0) && (!_selectedCellName))
     {

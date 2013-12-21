@@ -297,7 +297,7 @@
 {
     // Make the Login call to the server
     NSString *requestVariables = [NSString stringWithFormat:@""];
-    [self makeRequestWithPath:@"GetVirtualVenuesFacebookPages" variables:requestVariables andSecure:YES];
+    [self makeRequestWithPath:@"GetVirtualVenueFacebookPages" variables:requestVariables andSecure:YES];
 }
 
 - (void)logout
@@ -454,7 +454,11 @@
     networkActivity++;
     
     NSString *theBaseURL;
-    if(secure == YES)
+    AppDelegate *delegate = ((AppDelegate *)[[UIApplication sharedApplication] delegate]);
+    
+    if(delegate.debugFlag == TRUE)
+        theBaseURL = delegate.debugBaseURL;
+    else if(secure == YES)
         theBaseURL = @baseURLSecure;
     else
         theBaseURL = @baseURL;

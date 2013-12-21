@@ -389,7 +389,11 @@
     networkActivity++;
     
     NSString *theBaseURL;
-    if(secure == YES)
+    AppDelegate *delegate = ((AppDelegate *)[[UIApplication sharedApplication] delegate]);
+    
+    if(delegate.debugFlag == TRUE)
+        theBaseURL = delegate.debugBaseURL;
+    else if(secure == YES)
         theBaseURL = @baseURLSecure;
     else
         theBaseURL = @baseURL;

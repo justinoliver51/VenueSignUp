@@ -14,6 +14,8 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate, BreakoutLeagueURLConnectDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) NSString *debugBaseURL;
+@property (nonatomic, assign) BOOL debugFlag;
 
 // Facebook
 extern NSString *const FBSessionStateChangedNotification;
