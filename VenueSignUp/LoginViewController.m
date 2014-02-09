@@ -12,7 +12,6 @@
 #import "AddAdminViewController.h"
 #import <Accounts/Accounts.h>
 #import "DebugViewController.h"
-#import "BaseURL.h"
 
 #define FB_ACCESS_TOKEN @"CAADQgbCANWcBAB0wbPMo86WvMMSdZCZBIn8X8tBMT8xm1gqmXxIuTHwO4odTB3rZBj1zO4Q48mMZANRAp6Lw0WL288UkNmc0fJXS12kzFcW5PbQYbLSkstRHw5EoHEtpxhUWZBt6mZBzb8GZCEZCKiv3maRgLTMvlVyK5uZCJakKg9AZDZD"
 
@@ -24,6 +23,7 @@
     BOOL signUp;
     BOOL addAdmin;
     BOOL adHoc;
+    BOOL createMap;
 }
 
 @end
@@ -49,6 +49,7 @@
     signUp = NO;
     addAdmin = NO;
     adHoc = NO;
+    createMap = NO;
     
     AppDelegate *delegate = ((AppDelegate *)[[UIApplication sharedApplication] delegate]);
     delegate.debugFlag = FALSE;
@@ -140,6 +141,12 @@
 - (IBAction)didClickAdHocButton:(id)sender
 {
     adHoc = YES;
+    [self login];
+}
+
+- (IBAction)didClickCreateMapButton:(id)sender
+{
+    createMap = YES;
     [self login];
 }
 
@@ -290,31 +297,23 @@
             GetVenueInfoViewController *getVenueInfoViewController = [sb instantiateViewControllerWithIdentifier:@"GetVenueInfoViewController"];
             [self.navigationController pushViewController:getVenueInfoViewController animated:YES];
         }
+        else if(createMap == YES)
+        {
+            createMap = NO;
+            [defaults setObject:@"createMap" forKey:@"signUpButton"];
+            
+            // Open next view controller
+            UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+            GetVenueInfoViewController *getVenueInfoViewController = [sb instantiateViewControllerWithIdentifier:@"CreateMapViewController"];
+            [self.navigationController pushViewController:getVenueInfoViewController animated:YES];
+        }
         
         // Save the information
         [defaults synchronize];
     }
 }
 
-#pragma Client Code
-- (void) loginToServer
-{
-    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
-    NSString *accessToken = [appDelegate getFacebookAccessToken];
-    
-    if(!accessToken)
-    {
-        NSLog(@"Unable to get Access Token.");
-        return;
-    }
-    
-    NSLog(@"login: userName = %@, password = %@, accessToken = %@", @"", @"", accessToken);
-    
-    // Make the Login call to the server
-    NSString *requestVariables = [NSString stringWithFormat:@"&arg=%@&arg=%@&arg=%@", @"", @"", accessToken];
-    [self makeRequestWithPath:@"Login" variables:requestVariables andSecure:YES];
-}
-
+#pragma Facebook
 - (void)sessionStateChanged:(FBSession *)session
                       state:(FBSessionState) state
                       error:(NSError *)error
@@ -383,6 +382,23 @@
             }];
         }
     }
+}
+
+#pragma Client Code
+- (void) loginToServer
+{
+    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    NSString *accessToken = [appDelegate getFacebookAccessToken];
+    
+    if(!accessToken)
+    {
+        NSLog(@"Unable to get Access Token.");
+        return;
+    }
+    
+    // Make the Login call to the server
+    NSString *requestVariables = [NSString stringWithFormat:@"&username=%@&password=%@&access_token=%@", @"", @"", accessToken];
+    [self makeRequestWithPath:@"Login" variables:requestVariables andSecure:YES];
 }
 
 # pragma BreakoutLeague

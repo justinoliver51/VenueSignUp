@@ -12,6 +12,7 @@
 #import "ScenesListModel.h"
 #import "AppDelegate.h"
 #import "DebugViewController.h"
+#import "OAMutableURLRequest.h"
 
 @interface AddAdminViewController ()
 
@@ -196,7 +197,7 @@
         facebookPagesTVC.model = [model initializeFacebookPages:result];
         [facebookPagesTVC.tableView reloadData];
     }
-    // Facebook Pages
+    // Add Admin
     else if([result objectForKey:@"AddAdmin_Info"])
     {
         NSLog(@"AddAdmin_Info:");
@@ -278,6 +279,13 @@
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     networkActivity = 0;
     
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                    message:[error description]
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"sessionExpired" object:self];
 }
 
@@ -294,7 +302,7 @@
 - (void)getScenes
 {
     // Post to server
-    NSString *requestVariables = [NSString stringWithFormat:@"&arg=%@%@&arg=%f&arg=%f", [_cityNameTextField.text encodedURLString], _stateNameTextField.text, 0.0f, 0.0f];
+    NSString *requestVariables = [NSString stringWithFormat:@"&city_id=%@%@&latitude=%f&longitude=%f", [_cityNameTextField.text encodedURLString], _stateNameTextField.text, 0.0f, 0.0f];
     [self makeRequestWithPath:@"ListScenes" variables:requestVariables andSecure:YES];
 }
 
@@ -308,10 +316,9 @@
 - (void)addAdmin:(NSString *)venueID
 {
     // Make the Login call to the server
-    NSString *requestVariables = [NSString stringWithFormat:@"&arg=%@", venueID];
+    NSString *requestVariables = [NSString stringWithFormat:@"&venue_id=%@", venueID];
     [self makeRequestWithPath:@"AddAdmin" variables:requestVariables andSecure:YES];
 }
-
 
 #pragma Other Functions
 - (void)updateVenuesTable:(NSString *)sceneName

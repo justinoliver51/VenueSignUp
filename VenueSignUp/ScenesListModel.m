@@ -17,6 +17,10 @@
     NSArray *theScenesArray = [resultDictionary objectForKey:@"ScenesArray"];
     _scenesArray = [NSMutableArray array];
     
+    // Sort the scenes by name
+    NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"name"  ascending:YES];
+    theScenesArray = [theScenesArray sortedArrayUsingDescriptors:[NSArray arrayWithObjects:descriptor,nil]];
+    
     for(NSDictionary *scenesDictionary in theScenesArray)
     {
         SceneModel *scene = [[SceneModel alloc] init];

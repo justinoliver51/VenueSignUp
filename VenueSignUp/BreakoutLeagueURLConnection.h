@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 CodeGenius. All rights reserved.
 
 #import <Foundation/Foundation.h>
+#import "OAMutableURLRequest.h"
 
 @class BreakoutLeagueURLConnection;
 
@@ -32,6 +33,7 @@
 
 - (void)performRequestWithParameters:(NSDictionary *)parameters url:(NSString *)url;
 - (void)abortConnection;
+- (void)performRequest:(OAMutableURLRequest *)request;  // SceneCheck
 
 @end
 

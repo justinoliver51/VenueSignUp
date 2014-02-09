@@ -26,8 +26,11 @@
 // Network Connection
 #if DEBUG_VENUESIGNUP
 
-#define baseURL "http://localhost:8080/SceneCheckServer/RemoteProcedureCall?function="
-#define baseURLSecure "http://localhost:8080/SceneCheckServer/RemoteProcedureCall?function="
+//#define baseURL "http://localhost:8080/SceneCheckServer/RemoteProcedureCall?function="
+//#define baseURLSecure "http://localhost:8080/SceneCheckServer/RemoteProcedureCall?function="
+
+#define baseURL "http://41d6d274.ngrok.com/SceneCheckServer/RemoteProcedureCall?function="
+#define baseURLSecure "https://41d6d274.ngrok.com/SceneCheckServer/RemoteProcedureCall?function="
 
 #else
 
@@ -35,6 +38,13 @@
 #define baseURLSecure "https://scenecheckserver.scenecheckapp.com/RemoteProcedureCall?function="
 
 #endif
+
+// YELP
+#define YELP_URL_BASE @"http://api.yelp.com/v2/search?"
+#define YELP_CONSUMER_KEY @"7eyX4qVQRykGDUOGWuJvFw"
+#define YELP_CONSUMER_SECRET @"NJ1ZSu78GHZhjbDJmn_u8zgMnBY"
+#define YELP_TOKEN @"PauQPeVIDAO7dbPtRAPRRe6t7LMcmf_M"
+#define YELP_TOKEN_SECRET @"_QCoypf2KoqndlgA7VWjeGDbYbI"
 
 // Unordered
 #define DIM_SETTING_NAV_BAR 0.2f

@@ -11,6 +11,7 @@
 #import "NSString+URLEncoding.h"
 #import "FacebookPageModel.h"
 #import "DebugViewController.h"
+#import "YelpBusinessModel.h"
 
 @interface CreateVirtualVenueViewController ()
 
@@ -37,6 +38,7 @@
 @synthesize venueNameString = _venueNameString;
 @synthesize latitudeString = _latitudeString;
 @synthesize longitudeString = _longitudeString;
+@synthesize yelpID = _yelpID;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -60,6 +62,7 @@
     // Model
     model = [[CreateVenueModel alloc] init];
     
+    
     // Flags
     networkActivity = 0;
     
@@ -74,9 +77,9 @@
     [_sceneTypesTableView setDelegate:sceneTypesTVC];
     [_sceneTypesTableView setDataSource:sceneTypesTVC];
     sceneTypesTVC.model = [[NSArray alloc] initWithObjects:
-                           @"Alternative", @"College", @"Cocktail Bar", @"Country Western", @"Dive Bar", @"DJ's", @"Electronic",
-                           @"Folk", @"Games", @"Greek", @"Hip-Hop", @"Indie", @"Jazz", @"Latino", @"LGBT",
-                           @"Dance Club", @"Live Music", @"Lounge", @"Metal", @"Punk", @"Rock", @"Shot Bar",
+                           @"Alternative", @"Beer/Beer Garden", @"Classic", @"College", @"Cocktail Bar", @"Country Western",@"Dance Club", @"Dive Bar", @"DJ's", @"Electronic",
+                           @"Folk", @"Games", @"Greek", @"Hip-Hop", @"Indie", @"International", @"Jazz", @"Latino", @"LGBT",
+                           @"Live Music", @"Lounge", @"Metal", @"Pub", @"Night Club", @"Punk", @"Rock", @"Shot Bar", @"Sports Bar",
                            @"Top-40s", nil];
     
     musicTypesTVC = [[GenericTableViewController alloc] init];
@@ -269,20 +272,21 @@
     NSString *sceneTypes = [sceneTypesTVC.selectedCellName encodedURLString];
     NSString *facebookPageName = [facebookPagesTVC.selectedCellName encodedURLString];
     NSString *twitterUsername = _twitterUsernameTextField.text;
+    NSString *yelpID = [_yelpID encodedURLString];
     
     // Get the Facebook ID
     FacebookPageModel *page = [model.facebookPages objectForKey:facebookPagesTVC.selectedCellName];
     NSString *facebookID = [page.facebookID encodedURLString];
     
     // Make the Login call to the server
-    NSString *requestVariables = [NSString stringWithFormat:@"&arg=%@&arg=%@&arg=%@%@&arg=%@&arg=%@&arg=%@&arg=%@&arg=%@&arg=%@&arg=%@", venueName, scene, city, state, latitude, longitude, musicTypes, sceneTypes, facebookPageName, facebookID, twitterUsername];
+    NSString *requestVariables = [NSString stringWithFormat:@"&venue_name=%@&geoscenes=%@&city_id=%@%@&latitude=%@&longitude=%@&music_types=%@&scene_types=%@&facebook_page_name=%@&facebook_id=%@&twitter_username=%@&yelp_id=%@", venueName, scene, city, state, latitude, longitude, musicTypes, sceneTypes, facebookPageName, facebookID, twitterUsername, yelpID];
     [self makeRequestWithPath:@"CreateVenue" variables:requestVariables andSecure:YES];
 }
 
 - (void)getScenesInCity:(NSString *)city andState:(NSString *)state
 {
     // Make the Login call to the server
-    NSString *requestVariables = [NSString stringWithFormat:@"&arg=%@%@", [_cityString encodedURLString], [_stateString encodedURLString]];
+    NSString *requestVariables = [NSString stringWithFormat:@"&city_id=%@%@", [_cityString encodedURLString], [_stateString encodedURLString]];
     [self makeRequestWithPath:@"GetScenes" variables:requestVariables andSecure:YES];
 }
 
@@ -306,7 +310,6 @@
     NSString *requestVariables = @"";
     [self makeRequestWithPath:@"Logout" variables:requestVariables andSecure:YES];
 }
-
 
 #pragma Network Connection
 - (void)requestDidFinishLoadingWithDictionary:(NSDictionary *)result
@@ -472,6 +475,15 @@
     NSLog(@"%@", url);
 }
 
+- (void)makeRequest:(OAMutableURLRequest *)request
+{
+    BreakoutLeagueURLConnection *urlConnection = [[BreakoutLeagueURLConnection alloc] init];
+    urlConnection.delegate = self;
+    [urlConnection performRequest:request];
+    
+    NSLog(@"%@", request.URL.lastPathComponent);
+}
+
 - (void)BreakoutLeagueURLConnectionDidFinishLoading:(BreakoutLeagueURLConnection *)URLConnection withDictionary:(NSDictionary *)dictionary
 {
     NSLog(@"%@", dictionary);
@@ -483,6 +495,13 @@
     NSLog(@"%@", error);
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     networkActivity = 0;
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                    message:[error description]
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"sessionExpired" object:self];
 }

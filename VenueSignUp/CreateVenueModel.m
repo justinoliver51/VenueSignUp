@@ -8,6 +8,7 @@
 
 #import "CreateVenueModel.h"
 #import "FacebookPageModel.h"
+#import "YelpBusinessModel.h"
 
 @implementation CreateVenueModel
 

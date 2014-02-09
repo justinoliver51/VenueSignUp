@@ -33,5 +33,6 @@
 @property (strong, nonatomic) NSString *venueNameString;
 @property (strong, nonatomic) NSString *latitudeString;
 @property (strong, nonatomic) NSString *longitudeString;
+@property (strong, nonatomic) NSString *yelpID;
 
 @end

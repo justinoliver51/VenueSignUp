@@ -35,6 +35,7 @@
 @synthesize venueNameString = _venueNameString;
 @synthesize latitudeString = _latitudeString;
 @synthesize longitudeString = _longitudeString;
+@synthesize yelpID = _yelpID;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -180,8 +181,6 @@
         return;
     }
     
-    
-    
     [self createVenue];
 }
 
@@ -204,20 +203,22 @@
     NSString *sceneTypes = [sceneTypesTVC.selectedCellName encodedURLString];
     NSString *facebookPageName = [facebookPagesTVC.selectedCellName encodedURLString];
     NSString *twitterUsername = @"";
+    NSString *yelpID = [_yelpID encodedURLString];
     
     // Get the Facebook ID
     FacebookPageModel *page = [model.facebookPages objectForKey:facebookPagesTVC.selectedCellName];
     NSString *facebookID = [page.facebookID encodedURLString];
     
     // Make the Login call to the server
-    NSString *requestVariables = [NSString stringWithFormat:@"&arg=%@&arg=%@&arg=%@%@&arg=%@&arg=%@&arg=%@&arg=%@&arg=%@&arg=%@&arg=%@", venueName, scene, city, state, latitude, longitude, musicTypes, sceneTypes, facebookPageName, facebookID, twitterUsername];
+    NSString *requestVariables = [NSString stringWithFormat:@"&venue_name=%@&geoscenes=%@&city_id=%@%@&latitude=%@&longitude=%@&music_types=%@&scene_types=%@&facebook_page_name=%@&facebook_id=%@&twitter_username=%@&yelp_id=%@", venueName, scene, city, state, latitude, longitude, musicTypes, sceneTypes, facebookPageName, facebookID, twitterUsername, yelpID];
+    
     [self makeRequestWithPath:@"CreateVenue" variables:requestVariables andSecure:YES];
 }
 
 - (void)getScenesInCity:(NSString *)city andState:(NSString *)state
 {
     // Make the Login call to the server
-    NSString *requestVariables = [NSString stringWithFormat:@"&arg=%@%@", [_cityString encodedURLString], [_stateString encodedURLString]];
+    NSString *requestVariables = [NSString stringWithFormat:@"&city_id=%@%@", [_cityString encodedURLString], [_stateString encodedURLString]];
     [self makeRequestWithPath:@"GetScenes" variables:requestVariables andSecure:YES];
 }
 
@@ -418,6 +419,13 @@
     NSLog(@"%@", error);
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     networkActivity = 0;
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                    message:[error description]
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"sessionExpired" object:self];
 }

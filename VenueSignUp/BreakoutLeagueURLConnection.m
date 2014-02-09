@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 CodeGenius. All rights reserved.
 
 #import "BreakoutLeagueURLConnection.h"
+#import "OAMutableURLRequest.h"
 
 #define charactersToBeEscaped @"&%<>#/.+"
 
@@ -61,7 +62,7 @@
 
 - (void)performRequestWithParameters:(NSDictionary *)parameters url:(NSString *)url;
 {
-	// if nil parameters send error
+    // if nil parameters send error
 	NSString *postBody = @"";
 	
 	if (parameters) {
@@ -96,6 +97,32 @@
 	[request setAllHTTPHeaderFields:cookieHeaderDict];
 	
 	if (requestURLConnection) {
+		responseData = [[NSMutableData alloc] init];
+	}
+}
+
+// SCENECHECK ADDED THIS
+- (void)performRequest:(OAMutableURLRequest *)request
+{
+    if (self.connecting)
+    {
+		[self abortConnection];
+	}
+    
+    [request setCachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData];
+    [request setTimeoutInterval:240];
+    
+	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:TRUE];
+	requestURLConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:TRUE];
+	_connecting = TRUE;
+    
+	NSHTTPCookieStorage *cookieStore = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+	NSArray *cookiesArray = [cookieStore cookies];
+	NSDictionary *cookieHeaderDict = [NSHTTPCookie requestHeaderFieldsWithCookies:cookiesArray];
+	[request setAllHTTPHeaderFields:cookieHeaderDict];
+	
+	if (requestURLConnection)
+    {
 		responseData = [[NSMutableData alloc] init];
 	}
 }

@@ -40,7 +40,7 @@
 - (IBAction)didClickEnableButton:(id)sender
 {
     // Notification with new URL
-    NSString *theBaseURL = [NSString stringWithFormat:@"%@%s", _urlTextField.text, baseURLDebug];
+    NSString *theBaseURL = [NSString stringWithFormat:@"https://%@.ngrok.com%s", _urlTextField.text, baseURLDebug];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"debugOn" object:theBaseURL];
     [self dismissViewControllerAnimated:YES completion:nil];
 }

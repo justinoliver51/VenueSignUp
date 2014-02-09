@@ -11,6 +11,7 @@
 #import "GenericTableViewController.h"
 #import "VenueSignUpConstants.h"
 #import "BreakoutLeagueURLConnection.h"
+
 #define TEXT_FIELD_ADJUSTMENT 250
 
 @interface CreateVirtualVenueViewController : UIViewController <UITextFieldDelegate, BreakoutLeagueURLConnectDelegate>
@@ -35,5 +36,6 @@
 @property (strong, nonatomic) NSString *venueNameString;
 @property (strong, nonatomic) NSString *latitudeString;
 @property (strong, nonatomic) NSString *longitudeString;
+@property (strong, nonatomic) NSString *yelpID;
 
 @end
